@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['faca', 'knife']
+
+roboflow:
+  workspace: objectdetectv1-03u2h
+  project: object-detection-dataset-bmpr6
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/objectdetectv1-03u2h/object-detection-dataset-bmpr6/dataset/2

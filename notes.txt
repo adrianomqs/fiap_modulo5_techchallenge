@@ -1,0 +1,16 @@
+#link do dataset no roboflow
+https://app.roboflow.com/join/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3b3Jrc3BhY2VJZCI6Ik9xR2R4eTIzYzNXbWdaQXFlWDVZdk9jSlU2MTIiLCJyb2xlIjoib3duZXIiLCJpbnZpdGVyIjoiYWRyaWFuby5tcXNAZ21haWwuY29tIiwiaWF0IjoxNzM3NDgxODc5fQ.SejLcfWLPSwzUpAaykM7ytN7qmdH44TtQGMSUFPNe8s
+
+#Softwares para criar as labels (localmente)
+* labelimg
+
+* label-studio
+    #comandos:
+    c:\path\to\myenv\Scripts\activate.bat
+    label-studio start
+    deactivate
+
+# Software para as Labels online
+  https://universe.roboflow.com/
+
+
