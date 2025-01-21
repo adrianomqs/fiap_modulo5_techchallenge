@@ -6,7 +6,7 @@ import torch
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Usando dispositivo: {_device}")
 
-_device = "cpu"
+#_device = "cpu"
 
 # Especifica a confiança mínima e as classes de detecção
 _classes = [43, 73]  # Substitua se necessário
