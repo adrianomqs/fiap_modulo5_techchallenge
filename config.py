@@ -1,0 +1,1 @@
+ROBOFLOW_API_KEY = 'sua_key_aqui'
