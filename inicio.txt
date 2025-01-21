@@ -1,0 +1,18 @@
+1. VENV --------------------------------------
+# instalando a venv
+python -m venv .venv
+
+# ativando a venv
+.venv\Scripts\activate.bat
+
+# desabilitando a venv
+deactivate
+-----------------------------------------------
+
+2. Requirements -------------------------------
+
+# instalando os Requirements
+pip install -r requirements.txt
+
+-----------------------------------------------
+
