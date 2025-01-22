@@ -1,29 +1,20 @@
 from ultralytics import YOLO
 import cv2
 import torch
+from matplotlib import pyplot as plt
 
 # Verificar se a GPU está disponível
 _device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Usando dispositivo: {_device}")
 
-# Habilitar o uso de um modelo customizado
-model_custom = True
-
-# seleciona o modelo a ser carregado
-if model_custom:
-    # Load a custom YOLOv5 model
-    model_name = "yolo11x-custom.pt"
-    _classes = [1,2] # preencher com as classes do modelo treinado
-else:
-    # Load a COCO-pretrained YOLO11n model
-    model_name = "yolo11x.pt"
-    _classes = [43, 73] # classes Knife e Scissors
+#_device = "cpu"
 
 # Especifica a confiança mínima e as classes de detecção
+_classes = [43, 73]  # Substitua se necessário
 _conf = 0.25
 
 # Carregar o modelo e mover para o dispositivo
-model = YOLO(model_name)  # Substitua pelo caminho do modelo
+model = YOLO("yolo11x-custom.pt")  # Substitua pelo caminho do modelo
 model.to(_device)
 
 # Abrir o vídeo
@@ -44,7 +35,7 @@ while cap.isOpened():
         break
 
     # Realizar a detecção apenas para facas (classe = 43)
-    results = model.predict(frame, device=_device, classes=_classes, conf=_conf)
+    results = model.predict(frame, device=_device) 
 
     # Processar os resultados e desenhar caixas
     for box in results[0].boxes.data.tolist():
@@ -55,6 +46,16 @@ while cap.isOpened():
             # Desenhar a caixa e a etiqueta no frame
             cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 0, 255), 2)
             cv2.putText(frame, label, (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+
+    # Converter o frame de BGR para RGB para exibição no Matplotlib
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Mostrar o frame processado no Matplotlib
+    plt.imshow(rgb_frame)
+    plt.title("Processed Frame")
+    plt.axis("off")
+    plt.pause(0.001)  # Pequeno atraso para exibição em tempo real
+    plt.clf()  # Limpa a figura para o próximo frame
 
     # Escrever o frame processado no vídeo de saída
     out.write(frame)
